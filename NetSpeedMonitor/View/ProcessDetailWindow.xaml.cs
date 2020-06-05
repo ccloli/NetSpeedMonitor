@@ -43,6 +43,7 @@ namespace USTC.Software.hanyizhao.NetSpeedMonitor
                         Int32Rect.Empty, BitmapSizeOptions.FromRotation(Rotation.Rotate0));
                     OpenButtonText.Text = Tool.GetStringResource("RunAsAdministratorToGetMoreInformation");
                     OpenButton.Click += OpenButton_RunAsAdmin_Click;
+					KillButton.IsEnabled = false;
                 }
                 else
                 {
@@ -54,8 +55,10 @@ namespace USTC.Software.hanyizhao.NetSpeedMonitor
                     {
                         ProcessPath.Text = process.FilePath;
                         OpenButton.Click += OpenButton_OpenPath_Click;
-                    }
-                }
+					}
+					KillButton.IsEnabled = true;
+					KillButton.Click += KillButton_KillProcess_Click;
+				}
             }
             else
             {
@@ -66,6 +69,27 @@ namespace USTC.Software.hanyizhao.NetSpeedMonitor
         private void OpenButton_OpenPath_Click(object sender, RoutedEventArgs e)
         {
             Process.Start("explorer.exe", "/select,\"" + process.FilePath + "\"");
+        }
+
+        private void KillButton_KillProcess_Click(object sender, RoutedEventArgs e)
+        {
+            Process proc = new Process();
+            proc.StartInfo.FileName = "taskkill.exe";
+			proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+			proc.StartInfo.Arguments = "/pid " + process.ID + " /f";
+            proc.Start();
+            proc.WaitForExit(1000);
+			if (
+                proc.HasExited && (
+					// kill success
+					proc.ExitCode == 0 ||
+					// already killed
+					proc.ExitCode == 128
+                )
+            )
+			{
+                KillButton.IsEnabled = false;
+            }
         }
 
         private void OpenButton_RunAsAdmin_Click(object sender, RoutedEventArgs e)

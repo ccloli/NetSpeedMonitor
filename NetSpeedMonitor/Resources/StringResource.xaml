@@ -15,6 +15,7 @@
     <sys:String x:Key="Process_Detail">Process Detail</sys:String>
     <sys:String x:Key="Unknown">Unknown</sys:String>
     <sys:String x:Key="OpenPathInFileExplorer">Open Path in File Explorer</sys:String>
+    <sys:String x:Key="KillProcess">Kill Process</sys:String>
     <sys:String x:Key="RunAsAdministratorToGetMoreInformation">Run as Administrator to Get More Information</sys:String>
     <sys:String x:Key="ERROR">ERROR</sys:String>
     <sys:String x:Key="CantGetInformationOfThisProcessMaybeItsNotRunningNow_">Can't get information of this process. Maybe it's not running now.</sys:String>

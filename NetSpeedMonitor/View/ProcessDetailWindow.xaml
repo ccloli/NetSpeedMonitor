@@ -49,11 +49,28 @@
         </DockPanel>
 
         <TextBox Name="ProcessPath" Grid.Row="2" Grid.Column="1" Style="{StaticResource RightLabel}" IsReadOnly="True" />
-        <Button Name="OpenButton" Grid.Row="3" Grid.Column="1" Style="{StaticResource RightLabel}" HorizontalAlignment="Left">
-            <DockPanel>
-                <Image Name="OpenButtonImage" VerticalAlignment="Center" Height="{Binding ElementName=OpenButtonText, Path=FontSize}"/>
-                <TextBlock Name="OpenButtonText" VerticalAlignment="Center" Text="{DynamicResource OpenPathInFileExplorer}" />
-            </DockPanel>
-        </Button>
+        <DockPanel Grid.Row="3" Grid.Column="1" Style="{StaticResource RightLabel}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Row="0" Grid.Column="0"  Name="OpenButton" HorizontalAlignment="Left">
+                    <DockPanel Margin="5,0,5,0">
+                        <Image Name="OpenButtonImage" VerticalAlignment="Center" Height="{Binding ElementName=OpenButtonText, Path=FontSize}"/>
+                        <TextBlock Name="OpenButtonText" VerticalAlignment="Center" Text="{DynamicResource OpenPathInFileExplorer}" />
+                    </DockPanel>
+                </Button>
+                <Button Grid.Row="0" Grid.Column="2"  Name="KillButton" HorizontalAlignment="Left">
+                    <TextBlock Margin="5,0,5,0" Name="KillButtonText" VerticalAlignment="Center" Text="{DynamicResource KillProcess}" />
+                </Button>
+            </Grid>
+        </DockPanel>
     </Grid>
 </Window>
